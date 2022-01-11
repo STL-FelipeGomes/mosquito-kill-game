@@ -3,20 +3,19 @@ let largura = 0
 let vidas = 1
 let tempo = 15
 
-let criarMosquitoTempo = 1500
+let criarMosquitoTempo
 
-let teste = 'Bola'
+let acertos = []
 
 let nivel = window.location.search
 nivel = nivel.replace('?', '')
 
 if(nivel == 'normal'){
     criarMosquitoTempo = 1500
-    
 } else if(nivel == 'dificil'){
     criarMosquitoTempo = 1000
 } else if(nivel == 'chucknorris'){
-    criarMosquitoTempo = 800
+    criarMosquitoTempo = 2000
 }
 
 function ajustaTamanhoPalcoJogo() {
@@ -26,17 +25,20 @@ function ajustaTamanhoPalcoJogo() {
 
 ajustaTamanhoPalcoJogo()
 
-let cronometro = setInterval(function() {
-    tempo -= 1
+if(nivel !== 'chucknorris') {
+    let cronometro = setInterval(function() {
+        tempo -= 1
+        if(tempo < 0) {
+            clearInterval(cronometro)
+            clearInterval(mosquito)
+            window.location.href = 'vitoria.html'
+        } else {
+            document.getElementById('cronometro').innerHTML = tempo
+        }
+    }, 1000)
+}
+        
 
-    if(tempo < 0) {
-        clearInterval(cronometro)
-        clearInterval(mosquito)
-        window.location.href = 'vitoria.html'
-    } else {
-        document.getElementById('cronometro').innerHTML = tempo
-    }
-}, 1000)
 
 function posicaoRandomica(){
     if(document.getElementById('mosquito')) {
@@ -64,6 +66,8 @@ function posicaoRandomica(){
     mosquito.style.position = 'absolute'
     mosquito.id = 'mosquito'
     mosquito.onclick = function() {
+        acertos.push(mosquito)
+        document.getElementById('acertos').innerHTML = acertos.length
         this.remove()
     }
     

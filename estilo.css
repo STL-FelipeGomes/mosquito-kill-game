@@ -33,7 +33,7 @@ body {
 
 .painel {
     position: absolute;
-    width: 300px;
+    width: 350px;
     padding: 10px;
     left: 0px;
     bottom: 0px;
@@ -47,7 +47,7 @@ body {
     margin-right: 15px;
 }
 
-.cronometro {
+.cronometro, .divChuckNorris {
     display: left;
     font-size: 20px;
     font-weight: bold;

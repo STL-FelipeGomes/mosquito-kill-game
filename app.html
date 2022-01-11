@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game - Mata Mosquito</title>
-    
+
     <script src="jogo.js"></script>
-    
+
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body onresize="ajustaTamanhoPalcoJogo()">
@@ -18,17 +18,24 @@
             <img id="v2" src="imagens/coracao_cheio.png" alt="">
             <img id="v3" src="imagens/coracao_cheio.png" alt="">
         </div>
-        <div class="cronometro">Tempo restante: <span id="cronometro"></span></div>
+        <div class="cronometro" id="divCronometro">Tempo restante: <span id="cronometro"></span></div>
+        <div class="divChuckNorris" id="divChuckNorris">Mosquitos mortos: <span id="acertos">0</span></div>
     </div>
-    
-    <script>
-        document.getElementById('cronometro').innerHTML = tempo
 
-        console.log(teste)
+    <script>
+        if(nivel == 'chucknorris'){
+            let removerElemento = document.getElementById('divCronometro')
+            removerElemento.parentElement.removeChild(removerElemento)
+
+        } else {
+            document.getElementById('divChuckNorris').style.display = 'none'
+            document.getElementById('cronometro').innerHTML = tempo
+        }
 
         let mosquito = setInterval(function(){
             posicaoRandomica()
         }, criarMosquitoTempo)
+
     </script>
 
 </body>
